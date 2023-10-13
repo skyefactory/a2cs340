@@ -1,48 +1,61 @@
-#include<stdlib.h>
-#include<iostream>
-#include<string>
-#include "../header/sort.h"
+#include "../header/heap.h"
+#include <iostream>
+#include <stdlib.h>
+
 
 using namespace std;
 
-int opt = -1;
-string i1, i2;
-int sizeis = 0;
-int *arr;
-int main()
-{
-    elmIn:
-        i1="",i2="";
-        cout<<"Please enter the number of elements\n";
-        getline(cin, i1);
-        try {sizeis = stoi(i1);}
-        catch (exception &e) {goto elmIn;}
-        if (sizeis <= 0) 
+
+int main(){
+    int *in;
+    goto sizeIn;
+    sizeIn:
+        unsigned int size = 0;
+
+        cout<<"How many initial elements? : "; 
+        try {cin>>size;}
+        catch(exception &e){cout<<"Please enter an integer value for the size...\n"; goto sizeIn;}
+        if(size == 0)
+            {
+                cout<<"Please enter a number greater than 0.\n";
+                goto sizeIn;
+            }
+        goto inputIn;
+
+    inputIn:
+        cout<<"Please enter the elements \n";
+        in = new int[size]{};
+        for(int i = 0 ; i < size; i++)
         {
-            cout<<"Please enter a number greater then 0\n";
-            sizeis = 0;
-            goto elmIn;
-        }
-        goto arrIn;
+            int x = 0;
+            try
+            {
 
-    arrIn:
-        delete arr;
-        system("clear");
-        arr = new int(sizeis);
-        for(int i = 0; i < sizeis; i++){
-            i2 = "";
-            cout<<i<<"# :"; getline(cin, i2);
-            try {arr[i] = stoi(i2);}
-            catch (exception &e) {goto arrIn;}
-        }
-        goto endIn;
+                cout<<(i+1)<<" : ";
+                cin>>x;
+                in[i] = x;
 
-    endIn:
-        sort(arr,sizeis);
-        cout<<"You entered: [ ";
-        for(int i = 0; i < sizeis; i++){
-            (i == 0) ? cout<<arr[i] :  cout<<", "<<arr[i];
+            }
+            catch(exception &e) {cout<<"Please enter integers only...\n"; delete in; goto inputIn;}
+            
         }
-        cout<<" ]"<<endl;
+        cout<<"You Entered [ ";
+        for(int i = 0 ; i < size; i++)
+            {if(i == (size-1))
+                cout<<in[i]<<" ]"<<endl;
+            else
+                cout<<in[i]<<", ";}
+        goto heapify;
+
+    heapify:
+        MinMaxHeap mmh(in,size);
+        mmh.print();
     return 0;
+
+
+
+
+
+
+
 }
