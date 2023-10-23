@@ -4,9 +4,9 @@ ODIR = obj
 CC = g++
 CLFLAGS=-I$(IDIR)
 
-all: create assign1dfo301 clean
+all: create assign2dfo301 clean
 
-_OBJ = main.o node.o stack.o conversions.o expressiontree.o
+_OBJ = main.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: $(SDIR)/%.cpp $(DEPS)
@@ -15,9 +15,9 @@ $(ODIR)/%.o: $(SDIR)/%.cpp $(DEPS)
 create:
 	mkdir $(ODIR)
 
-assign1dfo301: $(OBJ)
+assign2dfo301: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
-	mv assign1dfo301 ../
+	mv assign2dfo301 ../
 
 clean:
 	rm -rf $(ODIR)
