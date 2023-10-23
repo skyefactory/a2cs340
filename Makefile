@@ -17,7 +17,6 @@ create:
 
 assign2dfo301: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
-	mv assign2dfo301 ../
 
 clean:
 	rm -rf $(ODIR)
